@@ -1,0 +1,50 @@
+﻿@model IEnumerable<PizzeriaInForno.Models.DettaglioOrdine>
+
+@{
+    ViewBag.Title = "Carrello";
+}
+
+<h2>Carrello</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+@using (Html.BeginForm("ConfermaOrdine", "DettaglioOrdine", FormMethod.Post)) { 
+    <table class="table">
+        <tr>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Ordine.Evaso)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Pietanza.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantita)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                @Html.HiddenFor(modelItem => item.ID_Pietanza)
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Ordine.Evaso)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Quantita)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id=item.ID_DettaglioOrdine }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.ID_DettaglioOrdine }) |*@
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ID_Pietanza }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </table>
+<input type="submit" value="Conferma Ordine" class="btn btn-danger" />
+}

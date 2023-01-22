@@ -1,0 +1,48 @@
+﻿@model IEnumerable<PizzeriaInForno.Models.Pietanza>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h2>Index</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+<div style="display: flex; gap:20px; flex-wrap: wrap;">
+    @foreach (var item in Model)
+    {
+        <form method="post" action="../Home/AggiungiAlCarrello/@item.ID_Pietanza">
+            <div class="card bg-warning" style="width: 25rem; box-shadow: 0px 0px 10px rgba(0,0,0,0.2); padding: 15px; overflow:hidden; border-radius: 20px;">
+                <img style="border-radius: 20px;" class="img-responsive" src="~/Content/img/@item.Foto" alt="Card image cap">
+                <div>
+                    <h3 class="card-title">@item.Nome </h3>
+                    <h5><b>Prezzo:</b> @string.Format("{0:C}", item.Prezzo)</h5>
+                    <p><b>Ingredienti:</b> @item.Ingredienti</p>
+                    <p><b>Tempo consegna:</b> @item.MinutiConsegna minuti</p>
+                    <div style="display:flex;">
+                        <select name="QuantitaAggiuntaAlCarrello" class="form-control btn-danger numeroPizzeSelezionate">
+                            <option selected value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <button class="btn btn-danger AggiungiAlCarrello_Button">Aggiungi al carrello</button>
+                    </div>
+                </div>
+                @if (true)
+                {
+                    <div class="text-center " style="margin-top:13px"><b>COMANDI AMMINISTRATORE</b></div>
+                    <div style="display:flex; justify-content:space-around;">
+                        <a href="Home/Edit/@item.ID_Pietanza" class="btn btn-primary form-control">Modifica</a>
+                        <a href="Home/Delete/@item.ID_Pietanza" class="btn btn-default">x</a>
+                    </div>
+                }
+            </div>
+        </form>
+    }
+</div>
+

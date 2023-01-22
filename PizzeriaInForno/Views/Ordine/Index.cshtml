@@ -1,0 +1,57 @@
+﻿@model IEnumerable<PizzeriaInForno.Models.Ordine>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Utente.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ID_Pietanza)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Evaso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DataOrdine)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Confermato)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Utente.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID_Pietanza)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Evaso)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DataOrdine)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Confermato)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID_Ordine }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID_Ordine }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID_Ordine })
+        </td>
+    </tr>
+}
+
+</table>
